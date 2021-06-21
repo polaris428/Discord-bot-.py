@@ -232,5 +232,5 @@ def lol(name):
         # 코드가 200이 아닐때(즉 찾는 닉네임이 없을때)
         print("소환사가 존재하지 않습니다")
 
-app.run('NjU1NjQyNTQ4MzI4NzI2NTc4.XfXEtA.tYnzjfIqY8PKsUoFj9BDcE820us')
+app.run('')
 
