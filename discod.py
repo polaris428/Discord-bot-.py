@@ -26,7 +26,9 @@ async def on_ready():
     print(app.user.name)
     print('connection was succesful')    
     activity = discord.Game(name="모두에게 인사")
+    
     await app.change_presence(status=discord.Status.idle, activity=activity)
+    #await app.change_presence(status=discord.Status.online, activity=discord.Game("서술"))
     
 
 @app.event
@@ -46,8 +48,15 @@ async def on_message(message):
         await message.delete()
         await message.channel.send('욕 감지')
     if message.content.startswith('삭제'): 
-        for i in range(1,10):
-            await channel.delete()
+        await message.channel.purge(limit=5)
+    if message.content.startswith("실행"):
+        embed=discord.Embed(title="프로필", description="폴라 딱가리", color=0x00ff56)
+        embed.set_author(name="폴라 딱가리", url="https://blog.naver.com/huntingbear21", icon_url="https://cdn.discordapp.com/avatars/655642548328726578/9912c169df4d463a2d28d9f9654bd597.png?size=256")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/avatars/655642548328726578/9912c169df4d463a2d28d9f9654bd597.png?size=256")
+        embed.add_field(name="1", value="1", inline=False)
+    
+        embed.set_footer(text="안녕하세요!")
+        await message.channel.send(embed=embed)    
     
     if message.content.startswith('시간표'): 
         a=datetime.today().weekday()      
@@ -81,10 +90,10 @@ async def on_message(message):
     if message.content.startswith('id'): 
         await message.channel.send("<@"+str(message.author.id)+'>')
     if message.content.startswith('가위바위보!'):
-        embed = discord.Embed(title="SHOP BOT",description="가위바위보 게임\n 선택해주세요!", color=0x00aaaa)
-        embed.add_field(name="STEP✌️", value="가위!", inline=False)
-        embed.add_field(name="STUN✊", value="바위!", inline=False)
-        embed.add_field(name="STUN✋", value="보!", inline=False)
+        embed = discord.Embed(title="가위 바위 보 게임!",description="가위바위보 게임\n 선택해주세요!", color=0x00aaaa)
+        embed.add_field(name="Scissors ✌️", value="가위!", inline=False)
+        embed.add_field(name="Rock", value="바위!", inline=False)
+        embed.add_field(name="Paper✋", value="보!", inline=False)
         
         msg = await message.channel.send(embed=embed)
         await msg.add_reaction("✌️") #step
@@ -128,6 +137,11 @@ async def on_message(message):
         await message.channel.send( "https://www.ebsoc.co.kr/")
     if message.content.startswith('자가진단'):
        await message.channel.send( "https://hcs.eduro.go.kr/#/loginWithUserInfo")  
+    if message.content.startswith('+검색 '):
+        message.content = "https://www.google.com/search?q="+message.content.replace("+검색 ","").replace(" ","%20")
+        msg = message.content
+        await  message.channel.send( msg)
+   
     if message.content.startswith('롤'):
        
        name= message.content.split("!")
@@ -167,26 +181,26 @@ async def on_reaction_add(reaction, user):
         await reaction.message.channel.send("선택중🤔")
         time.sleep(5)
         if(a==1):
-            await reaction.message.channel.send("✋"+user.name+"님이 승리했습니다")
+            await reaction.message.channel.send("✋\n"+user.name+"님이 승리했습니다")
         else:
-            await reaction.message.channel.send("✊"+user.name+"님이 패배했습니다")    
+            await reaction.message.channel.send("✊\n"+user.name+"님이 패배했습니다")    
 
     if str(reaction.emoji) == "✊":
         await reaction.message.channel.send("선택중🤔")
         time.sleep(5)
         await reaction.message.channel.send(user.name + "님이 주먹을 선택했습니다")
         if(a==1):
-            await reaction.message.channel.send("✌️"+user.name+"님이 승리했습니다")
+            await reaction.message.channel.send("✌️\n"+user.name+"님이 승리했습니다")
         else:
-            await reaction.message.channel.send("✋"+user.name+"님이 패배했습니다")   
+            await reaction.message.channel.send("✋\n"+user.name+"님이 패배했습니다")   
     if str(reaction.emoji) == "✋":
         await reaction.message.channel.send(user.name + "님이 보를 선택했습니다")
         await reaction.message.channel.send("선택중🤔")
         time.sleep(5)
         if(a==1):
-            await reaction.message.channel.send("✊"+user.name+"님이 승리했습니다")
+            await reaction.message.channel.send("✊\n"+user.name+"님이 승리했습니다")
         else:
-            await reaction.message.channel.send("✌️"+user.name+"님이 패배했습니다")   
+            await reaction.message.channel.send("✌️\n"+user.name+"님이 패배했습니다")   
 
 
 
