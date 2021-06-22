@@ -247,4 +247,4 @@ def lol(name):
         print("소환사가 존재하지 않습니다")
 
 app.run('')
-
+#NjU1NjQyNTQ4MzI4NzI2NTc4.XfXEtA.N_OHNviF-T4fAlTZvlFYD2j00wM
