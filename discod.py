@@ -13,7 +13,7 @@ import random #랜덤함수
 import time #딜레이 함수
 from soupsieve import select
 from datetime import datetime
-
+import os
 import json
 import requests
 app = commands.Bot(command_prefix='prefix that you want')
@@ -246,7 +246,6 @@ def lol(name):
         # 코드가 200이 아닐때(즉 찾는 닉네임이 없을때)
         print("소환사가 존재하지 않습니다")
 
-to="21NjU1NjQyNTQ4MzI4NzI2NTc4.XfXEtA.NyPogah8VfmW98XuYsP1AL6NAL4"
-too=to.split(1)
-app.run(too[1])
+token=os.environ["BOT"]
+app.run(token)
 
