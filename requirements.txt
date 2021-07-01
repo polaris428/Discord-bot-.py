@@ -1,1 +1,1 @@
--r requirements.txt
+discord.py ==1.7.2
