@@ -1,0 +1,2 @@
+import asyncio
+import discord =1.7.2
