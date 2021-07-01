@@ -1,2 +1,2 @@
 import asyncio
-import discord =1.7.2
+import discord ==1.7.2
