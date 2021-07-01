@@ -58,7 +58,16 @@ async def on_message(message):
         embed.set_footer(text="안녕하세요!")
         await message.channel.send(embed=embed)    
     
-  
+    if message.content.startswith('시간표'): 
+        a=datetime.today().weekday()      
+        if(a==0):
+            today="월"
+            a="영어\n 수학\n일본어 \n 서버구축\n서버구축 \n자료구조\n자료구조" 
+        elif(a==1):
+            today="화"
+            a="주제\n 한국사\n물리 \n 영어b\n문학a \n웹프\n웹프"   
+        embed = discord.Embed(title="시간표",description=a, color=0x00aaaa)    
+        await message.channel.send("6반 시간표", embed = discord.Embed(title=today+"요일 시간표",description=a, color=0x00aaaa)   )
 
     if message.content.startswith('안녕!'): 
         await message.channel.send('안녕하세요!👋')
